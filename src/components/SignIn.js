@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import signIn from '../actions/user/sign-in'
 import Title from '../components/ui/Title'
 
+
 const dialogStyle = {
   width: '400px',
   height: '260px',
@@ -20,7 +21,7 @@ const buttonStyle = {
   marginLeft: '1rem',
 }
 
-export class SignIn extends PureComponent {
+class SignIn extends PureComponent {
   static propTypes = {
     push: PropTypes.func.isRequired,
     signIn: PropTypes.func.isRequired,
@@ -29,7 +30,7 @@ export class SignIn extends PureComponent {
 
   componentWillMount() {
     const { replace, signedIn } = this.props
-    if (signedIn) replace('/')
+    if (signedIn) replace('/classes')
   }
 
   submitForm(event) {

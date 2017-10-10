@@ -1,25 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { ConnectedRouter as Router } from 'react-router-redux'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute } from 'react-router'
 import store, { history } from './store'
-import registerServiceWorker from './registerServiceWorker'
-import SignIn from './components/SignIn'
-
-import App from './App'
-
-
 import './index.css'
+import App from './App'
+import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
-        <IndexRoute component={ SignIn } />
-      </Route>
+      <App />
     </Router>
-  </Provider>,
-  document.getElementById('root')
-)
+  </Provider>, document.getElementById('root'))
 
 registerServiceWorker()

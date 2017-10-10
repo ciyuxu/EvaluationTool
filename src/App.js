@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
-import SignIn from './components/SignIn';
 import PropTypes from 'prop-types'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import muiTheme from './styles/theme'
 // import Navigation from './components/ui/Navigation'
-// import Routes from './routes'
+import Routes from './routes'
+import './App.css';
+// import SignIn from './components/SignIn';
 
 class App extends Component {
   static childContextTypes = {
@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App">
-          <SignIn />
+          <Routes />
         </div>
       </MuiThemeProvider>
     );

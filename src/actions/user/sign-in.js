@@ -24,7 +24,7 @@ export default (user) => {
 
         api.app.set('user', user)
 
-        history.replace('/')
+        history.replace('/classes')
 
         dispatch({
           type: USER_SIGNED_IN,

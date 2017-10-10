@@ -32,12 +32,16 @@ class API {
     return this.app.service(serviceName)
   }
 
-  authenticate({ email, password }) {
-    return this.app.authenticate(
-      Object.assign({}, { strategy: 'local' }, {
+  authenticate() {
+    return this.app.authenticate()
+  }
+
+  signIn({ email, password }) {
+    return this.app.authenticate({
+      strategy: 'local',
       email,
-      password,
-    }))
+      password
+    })
     .then((response) => {
       return this.app.passport.verifyJWT(response.accessToken);
     })

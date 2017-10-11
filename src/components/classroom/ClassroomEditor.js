@@ -11,12 +11,10 @@ class ClassroomEditor extends PureComponent {
   constructor (props) {
    super(props)
 
-   const { batchNr, startDate, endDate } = props
-
    this.state = {
-     batchNr: batchNr || '',
-     startDate: Date.now,
-     endDate: Date.now,
+     batchNr: '',
+     startDate: new Date(),
+     endDate: new Date(),
      errors: {} }
  }
 
@@ -41,11 +39,11 @@ class ClassroomEditor extends PureComponent {
     })
   }
 
-  validate(batch) {
-    const { batchNr, startDate, endDate } = batch
+  validate(classroom) {
+    const { batchNr, startDate, endDate } = classroom
 
     let errors = {}
-    if (!batchNr || batchNr === '') errors.batchNumber = 'Please type in batch number!'
+    if (!batchNr || batchNr === '') errors.batchNr = 'Please type in batch number!'
 
     this.setState({
       errors,
@@ -56,17 +54,9 @@ class ClassroomEditor extends PureComponent {
 
 
     saveClassroom() {
-       const {
-         batchNr,
-         startDate,
-         endDate,
-       } = this.state
+       const { batchNr, startDate, endDate } = this.state
 
-       const classroom = {
-         batchNr,
-         startDate,
-         endDate,
-       }
+       const classroom = { batchNr, startDate, endDate }
 
        if (this.validate(classroom)) {
          this.props.createClassroom(classroom)
@@ -75,7 +65,6 @@ class ClassroomEditor extends PureComponent {
 
   render(){
     if (!this.props.signedIn) return null
-    const { errors } = this.state
     return (
       <div className="CreateClassroomButton">
         <TextField
@@ -89,11 +78,13 @@ class ClassroomEditor extends PureComponent {
 
          <DatePicker
              hintText="Click to select a start date"
+             value={this.state.startDate}
              onChange={this.updateStartDate.bind(this)}
            />
 
            <DatePicker
              hintText="Click to select an end date"
+             value={this.state.endDate}
              onChange={this.updateEndDate.bind(this)}
            />
 

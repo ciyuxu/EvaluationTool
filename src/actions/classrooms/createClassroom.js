@@ -5,7 +5,6 @@ import {
   LOAD_ERROR,
   LOAD_SUCCESS
 } from '../loading'
-import { history } from '../../store'
 
 
 const api = new API()

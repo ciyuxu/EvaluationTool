@@ -40,7 +40,7 @@ class ClassroomEditor extends PureComponent {
   }
 
   validate(classroom) {
-    const { batchNr, startDate, endDate } = classroom
+    const { batchNr } = classroom
 
     let errors = {}
     if (!batchNr || batchNr === '') errors.batchNr = 'Please type in batch number!'

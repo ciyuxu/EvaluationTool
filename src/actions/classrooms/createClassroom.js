@@ -5,19 +5,21 @@ import {
   LOAD_ERROR,
   LOAD_SUCCESS
 } from '../loading'
+import { history } from '../../store'
+
 
 const api = new API()
 
-export default () => {
+export default (newClassroom) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
-    const backend = api.service('classes')
+    const backend = api.service('classrooms')
 
     api.authenticate()
       .then(() => {
-        backend.create({})
-          .then(() => {
+        backend.create(newClassroom)
+          .then((result) => {
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })
           })

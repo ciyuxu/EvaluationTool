@@ -14,7 +14,7 @@ class ClassroomEditor extends PureComponent {
    const { batchNr, startDate, endDate } = props
 
    this.state = {
-     batchNr: '',
+     batchNr: batchNr || '',
      startDate: Date.now,
      endDate: Date.now,
      errors: {} }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import fetchClassrooms from '../actions/classrooms/fetchClassrooms';
 import subscribeToClassrooms from '../actions/classrooms/subscribeToClassrooms'
+import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ClassroomEditor from './classroom/ClassroomEditor'
@@ -28,7 +29,7 @@ class ClassroomsOverview extends PureComponent {
     }
   }
 
-  renderclassroom(classroom, index) {
+  renderClassroom(classroom, index) {
     return (
       <MenuItem
         key={index}
@@ -43,8 +44,13 @@ class ClassroomsOverview extends PureComponent {
       <h1>Classrooms Overview</h1>
 
       <ClassroomEditor />
-
-
+      <br />
+      <br />
+      <Paper className="paper">
+        <Menu>
+          { this.props.classrooms.map(this.renderClassroom.bind(this)) }
+        </Menu>
+      </Paper>
 
     </div>
   )

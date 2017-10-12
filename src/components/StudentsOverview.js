@@ -35,13 +35,13 @@ class StudentsOverview extends PureComponent {
     const { push } = this.props
 
     return () => {
-      push(`/${studentId}`)
+      push(`/student/${studentId}`)
     }
   }
 
   renderStudent(student, index) {
     return (
-      <div>
+      <div key={index}>
       <Card style={style.card} className="card">
         <CardMedia overlay={<CardTitle title={student.currentColor} />}>
             <img src={student.photo} alt="" />
@@ -73,11 +73,11 @@ class StudentsOverview extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ students, currentUser }) => (
+const mapStateToProps = ({ students, currentUser, subscriptions }) => (
   {
     students,
     currentUser,
-    // subscribed: subscriptions.includes('classrooms'),
+    subscribed: subscriptions.includes('students'),
   }
 )
 

@@ -42,7 +42,7 @@ class ClassroomsOverview extends PureComponent {
     const { push } = this.props
 
     return () => {
-      push(`/${classroomId}`)
+      push(`/classroom/${classroomId}`)
     }
   }
 

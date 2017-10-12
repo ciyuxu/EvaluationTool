@@ -51,7 +51,7 @@ class ClassroomsOverview extends PureComponent {
       <MenuItem
         key={index}
         onClick={this.goToClassroom(classroom._id).bind(this)}
-        primaryText={`Batch number: ${classroom.batchNr}, students: ${classroom.students.length}`} leftIcon={<ClassIcon />}/>
+        primaryText={`Batch number: ${classroom.batchNr}`} leftIcon={<ClassIcon />}/>
     )
   }
 

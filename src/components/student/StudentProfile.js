@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import fetchStudents from '../../actions/students/fetchStudents'
 import subscribeToStudents from '../../actions/students/subscribeToStudents'
+import Evaluation from './Evaluation'
+
 
 class StudentProfile extends PureComponent {
   componentWillMount() {
@@ -17,9 +19,10 @@ class StudentProfile extends PureComponent {
 
     return(
       <div className="studentProfile">
-        <img src={photo} width="200" alt="profile"/>
+        <img src={photo} width="200" alt="this"/>
         <h1> {fullName}</h1>
         <h1>{currentColor}</h1>
+        <Evaluation />
       </div>
     )
   }

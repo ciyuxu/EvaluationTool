@@ -1,3 +1,5 @@
+// src/actions/games/get.js
+
 import API from '../../api'
 import {
   APP_LOADING,
@@ -6,11 +8,11 @@ import {
   LOAD_SUCCESS
 } from '../loading'
 
-export const STUDENT_CREATED = 'STUDENT_CREATED'
+export const GET_STUDENT = 'GET_STUDENT'
 
 const api = new API()
 
-export default (newstudent) => {
+export default (studentId) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
@@ -18,10 +20,16 @@ export default (newstudent) => {
 
     api.authenticate()
       .then(() => {
-        backend.create(newstudent)
+        backend.get(studentId)
           .then((result) => {
+            console.log(result)
             dispatch({ type: APP_DONE_LOADING })
             dispatch({ type: LOAD_SUCCESS })
+
+            dispatch({
+              type: GET_STUDENT,
+              payload: result
+            })
           })
           .catch((error) => {
             dispatch({ type: APP_DONE_LOADING })

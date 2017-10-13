@@ -9,6 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import MenuItem from 'material-ui/MenuItem';
 import AddStudent from './student/AddStudent'
+import LuckyButton from './classroom/LuckyButton'
 
 const style = {
 
@@ -42,14 +43,14 @@ class StudentsOverview extends PureComponent {
   renderStudent(student, index) {
     return (
       <div key={index}>
-      <Card style={style.card} className="card">
-        <CardMedia overlay={<CardTitle title={student.currentColor} />}>
-            <img src={student.photo} alt="" />
-        </CardMedia>
-        <CardActions>
-          <FlatButton label={`Student name: ${student.fullName}`} onClick={this.goToStudent(student._id).bind(this)} />
-        </CardActions>
-    </Card>
+        <Card style={style.card} className="card">
+          <CardMedia overlay={<CardTitle title={student.currentColor} />}>
+              <img src={student.photo} alt="" />
+          </CardMedia>
+          <CardActions>
+            <FlatButton label={`Student name: ${student.fullName}`} onClick={this.goToStudent(student._id).bind(this)} />
+          </CardActions>
+        </Card>
       </div>
     )
   }
@@ -60,6 +61,8 @@ class StudentsOverview extends PureComponent {
       <h1>Students Overview</h1>
 
       <AddStudent />
+      <br />
+      <LuckyButton />
       <br />
       <br />
       <div>

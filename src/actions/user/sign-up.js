@@ -1,24 +1,23 @@
 import API from '../../api'
-import loading from '../loading'
-import loadError from '../load-error'
-import loadSuccess from '../load-success'
 import signIn from './sign-in'
+
+export const USER_SIGNED_UP = 'USER_SIGNED_UP'
 
 const api = new API()
 
 export default (user) => {
   return (dispatch) => {
-    const backend = api.service('users')
 
-    dispatch(loading(true))
+    const backend = api.service('users')
 
     backend.create(user)
       .then((result) => {
         dispatch(signIn(user))
       })
       .catch((error) => {
-        dispatch(loading(false))
-        dispatch(loadError(error))
+        dispatch({
+          payload: error.message
+        })
       })
   }
 }

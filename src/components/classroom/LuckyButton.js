@@ -1,14 +1,10 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import pickStudent from '../../actions/classrooms/pickStudent'
 import RaisedButton from 'material-ui/RaisedButton'
 
 class LuckyButton extends PureComponent {
-  static propTypes = {
-      signedIn: PropTypes.bool.isRequired,
-    }
-
+  
   luckStudent(){
     const { _id, students } = this.props.currentClassroom
     this.props.pickStudent(_id, students)

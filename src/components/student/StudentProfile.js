@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import fetchStudents from '../../actions/students/fetchStudents'
 import getCurrentStudent from '../../actions/students/getStudent'
 import subscribeToStudents from '../../actions/students/subscribeToStudents'
+import deleteAStudent from '../../actions/students/deleteAStudent'
 
 
 class StudentProfile extends PureComponent {
@@ -16,6 +17,12 @@ class StudentProfile extends PureComponent {
     if (!subscribed) subscribeToStudents()
   }
 
+  deleteThisStudent(){
+      const { studentId } = this.props.match.params
+
+
+      this.props.deleteAStudent(studentId)
+    }
 
   render() {
     const { currentStudent } = this.props
@@ -23,11 +30,10 @@ class StudentProfile extends PureComponent {
 
     return(
       <div className="student profile">
-        <img src={currentStudent.photo} width="500" alt="this"/>
+        <img src={currentStudent.photo} width="200" alt="this"/>
         <h1> {currentStudent.fullName}</h1>
-        <h1>"hello"</h1>
+        <h1>"I like to be evaluated!"</h1>
         <h1>{currentStudent.currentColor}</h1>
-
         <div className="actions">
           <button className="primary" onClick={this.deleteThisStudent.bind(this)}>Delete</button>
         </div>
@@ -52,5 +58,6 @@ const mapStateToProps = ({ currentUser, currentStudent, student, currentClassroo
 export default connect(mapStateToProps, {
   getCurrentStudent,
   fetchStudents,
+  deleteAStudent,
   subscribeToStudents,
 })(StudentProfile)

@@ -1,39 +1,28 @@
 import API from '../../api'
-import { LOAD_ERROR } from '../loading'
-import { history } from '../../store'
-
-export const STUDENT_DELETED = 'STUDENT_DELETED'
+import { history, replace } from '../../store'
 
 const api = new API()
 
-export default (studentId) => {
+export const STUDENT_REMOVED = 'STUDENT_REMOVED'
+
+export default (studentId, classroomId) => {
   return (dispatch) => {
 
+    console.log("delete")
+    api.app.authenticate()
+      .then(() => {
         const backend = api.service('students')
-
-        api.app.authenticate()
-          .then(() => {
-            backend.remove(studentId)
-              .then((result) => {
-                console.log(result)
-                dispatch({
-                  type: STUDENT_DELETED,
-                  payload: result
-                })
-                history.push('/classrooms')
-              })
-              .catch((error) => {
-                dispatch({
-                  type: LOAD_ERROR,
-                  payload: error.message
-                })
-              })
-          })
+        backend.remove(studentId)
+        .then(() => {
+          history.replace(`/classroom/${classroomId}`)
+        })
           .catch((error) => {
-            dispatch({
-              type: LOAD_ERROR,
-              payload: error.message
-            })
+
           })
-      }
-    }
+      })
+      .catch((error) => {
+        history.push('/sign-in')
+      })
+
+  }
+}

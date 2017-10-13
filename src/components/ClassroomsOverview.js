@@ -8,7 +8,7 @@ import ClassIcon from 'material-ui/svg-icons/action/class'
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ClassroomEditor from './classroom/ClassroomEditor'
-
+import LuckyButton from './classroom/LuckyButton'
 const style = {
   paper: {
     background: '#f1f9ed',
@@ -48,7 +48,7 @@ class ClassroomsOverview extends PureComponent {
 
   renderClassroom(classroom, index) {
     return (
-      <div key='classroom'>
+      <div key={index}>
       <br />
       <MenuItem
         key={index}

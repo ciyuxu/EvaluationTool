@@ -8,9 +8,7 @@ import Menu from 'material-ui/Menu';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import AddStudent from './student/AddStudent';
-import deleteAStudent from '../actions/students/deleteAStudent';
+import AddStudent from './student/AddStudent'
 import LuckyButton from './classroom/LuckyButton'
 
 const style = {
@@ -42,13 +40,6 @@ class StudentsOverview extends PureComponent {
     }
   }
 
-  deleteThisStudent(){
-      const { currentStudent } = this.props
-
-      this.props.deleteAStudent(currentStudent)
-    }
-
-
   renderStudent(student, index) {
     return (
       <div key={index}>
@@ -60,13 +51,6 @@ class StudentsOverview extends PureComponent {
             <FlatButton label={`Student name: ${student.fullName}`} onClick={this.goToStudent(student._id).bind(this)} />
           </CardActions>
         </Card>
-        <div>
-          <RaisedButton
-            label="Delete this student"
-            primary={true}
-            onClick={this.deleteThisStudent.bind(this)}
-             />
-        </div>
       </div>
     )
   }
@@ -92,16 +76,12 @@ class StudentsOverview extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ currentUser, currentStudent, students, subscriptions }) => {
-  const student = students.filter((student) => (student._id === currentStudent))[0]
-
-  return {
-    currentUser,
-    currentStudent,
+const mapStateToProps = ({ students, currentUser, subscriptions }) => (
+  {
     students,
-    student,
+    currentUser,
     subscribed: subscriptions.includes('students'),
   }
-}
+)
 
-export default connect(mapStateToProps, { fetchStudents, deleteAStudent, subscribeToStudents, push })(StudentsOverview)
+export default connect(mapStateToProps, { fetchStudents, subscribeToStudents, push })(StudentsOverview)

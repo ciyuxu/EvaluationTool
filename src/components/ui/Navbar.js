@@ -30,7 +30,7 @@ class Navbar extends PureComponent {
     const { signedIn } = this.props
     return (
       <AppBar
-        title="Student evaluation"
+        title="Evaluation Tool"
 
         iconElementRight={signedIn ?
           <FlatButton label="Sign out" onClick={this.signOut.bind(this)} /> :

@@ -17,6 +17,7 @@ class AddStudent extends PureComponent {
     }
   }
 
+static propTypes = {signedIn: PropTypes.bool}
 
 updateFullName(event){
   this.setState({
@@ -53,6 +54,7 @@ saveStudent() {
 }
 
   render() {
+    if (!this.props.signedIn) return null
     return (
       <div className="AddAStudent">
         <TextField
@@ -87,7 +89,8 @@ saveStudent() {
   }
 }
 const mapStateToProps = ({ currentUser }) => ({
-currentUser})
+  signedIn: !!currentUser && !!currentUser._id,
+})
 
 
 export default connect(mapStateToProps, { addAStudent } )(AddStudent)

@@ -5,7 +5,8 @@ import fetchStudents from '../../actions/students/fetchStudents'
 import getCurrentStudent from '../../actions/students/getStudent'
 import subscribeToStudents from '../../actions/students/subscribeToStudents'
 import deleteAStudent from '../../actions/students/deleteAStudent'
-
+import RaisedButton from 'material-ui/RaisedButton'
+import EvaluationForm from './EvaluationForm'
 
 class StudentProfile extends PureComponent {
   componentWillMount() {
@@ -34,9 +35,14 @@ class StudentProfile extends PureComponent {
         <h1> {currentStudent.fullName}</h1>
         <h1>"I like to be evaluated!"</h1>
         <h1>{currentStudent.currentColor}</h1>
-        <div className="actions">
-          <button className="primary" onClick={this.deleteThisStudent.bind(this)}>Delete</button>
+        <div>
+          <RaisedButton
+            label="Delete this student"
+            primary={true}
+            onClick={this.deleteThisStudent.bind(this)}
+             />
         </div>
+      <EvaluationForm />
       </div>
     )
   }

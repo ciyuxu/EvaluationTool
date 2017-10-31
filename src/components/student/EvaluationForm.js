@@ -35,6 +35,7 @@ class EvaluationForm extends PureComponent {
   }
 
   saveEvaluation() {
+
     const { evaluationDate, currentColor, remark } = this.state
     const student = { evaluationDate, currentColor, remark }
 

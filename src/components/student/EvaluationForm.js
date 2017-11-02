@@ -6,6 +6,8 @@ import MenuItem from 'material-ui/MenuItem'
 import DatePicker from 'material-ui/DatePicker'
 import RaisedButton from 'material-ui/RaisedButton'
 import evaluateStudent from '../../actions/students/evaluate'
+import getCurrentStudent from '../../actions/students/getStudent'
+
 
 class EvaluationForm extends PureComponent {
   constructor (props) {
@@ -42,6 +44,8 @@ class EvaluationForm extends PureComponent {
     const  studentId  = this.props.currentStudent._id
 
     this.props.evaluateStudent(studentId, student)
+   
+    this.props.getCurrentStudent(studentId)
 
   }
 
@@ -95,4 +99,4 @@ class EvaluationForm extends PureComponent {
 
 const mapStateToProps = ({ currentStudent, currentUser, student }) => ({ currentStudent, currentUser, student })
 
-export default connect(mapStateToProps, { evaluateStudent })(EvaluationForm)
+export default connect(mapStateToProps, { evaluateStudent, getCurrentStudent })(EvaluationForm)

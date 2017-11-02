@@ -8,6 +8,7 @@ import deleteAStudent from '../../actions/students/deleteAStudent'
 import RaisedButton from 'material-ui/RaisedButton'
 import EvaluationForm from './EvaluationForm'
 
+
 class StudentProfile extends PureComponent {
   componentWillMount() {
     const { currentStudent, fetchStudents, getCurrentStudent, subscribeToStudents, subscribed } = this.props
@@ -23,7 +24,7 @@ class StudentProfile extends PureComponent {
 
 
       this.props.deleteAStudent(studentId)
-    }
+        }
 
   render() {
     const { currentStudent } = this.props
@@ -32,9 +33,10 @@ class StudentProfile extends PureComponent {
     return(
       <div className="student profile">
         <img src={currentStudent.photo} width="200" alt="this"/>
-        <h1> {currentStudent.fullName}</h1>
         <h1>"I like to be evaluated!"</h1>
-        <h1>{currentStudent.currentColor}</h1>
+        <h2> {`Name: ${currentStudent.fullName}`}</h2>
+        <h2>{`Color: ${currentStudent.currentColor}`}</h2>
+        <h2>{`Remark: ${currentStudent.remark}`}</h2>
         <div>
           <RaisedButton
             label="Delete this student"

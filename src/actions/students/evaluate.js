@@ -2,7 +2,7 @@ import API from '../../api'
 import { LOAD_ERROR } from '../loading'
 import { history } from '../../store'
 
-export const ADD_EVALULATION = 'ADD_EVALULATION'
+export const STUDENT_EVALUATED = 'STUDENT_EVALUATED'
 
 
 const api = new API()
@@ -13,16 +13,15 @@ export default (studentId, student) => {
 
         api.app.authenticate()
           .then(() => {
-            console.log(studentId)
 
-            backend.patch(studentId,{ type: ADD_EVALULATION, payload: student })
+            backend.patch(studentId, student)
 
 
-              .then((student) => {
-                  console.log(student)
+              .then((result) => {
+                  console.log(result)
                 dispatch({
-                  type: ADD_EVALULATION,
-                  payload: student
+                  type: STUDENT_EVALUATED,
+                  payload: result
                 })
               })
               .catch((error) => {

@@ -1,42 +1,42 @@
-import { history } from '../../store'
-import API from '../../api'
+import { history } from "../../store";
+import API from "../../api";
 import {
   APP_LOADING,
   APP_DONE_LOADING,
   LOAD_ERROR,
   LOAD_SUCCESS
-} from '../loading'
+} from "../loading";
 
-export const USER_SIGNED_IN = 'USER_SIGNED_IN'
+export const USER_SIGNED_IN = "USER_SIGNED_IN";
 
-const api = new API()
+const api = new API();
 
-export default (user) => {
+export default user => {
+  console.log(user);
+  return dispatch => {
+    dispatch({ type: APP_LOADING });
 
-  console.log(user)
-  return (dispatch) => {
-    dispatch({ type: APP_LOADING })
+    api
+      .signIn(user)
+      .then(user => {
+        dispatch({ type: APP_DONE_LOADING });
+        dispatch({ type: LOAD_SUCCESS });
 
-    api.signIn(user)
-      .then((user) => {
-        dispatch({ type: APP_DONE_LOADING })
-        dispatch({ type: LOAD_SUCCESS })
+        api.app.set("user", user);
 
-        api.app.set('user', user)
-
-        history.replace('/classrooms')
+        history.replace("/classrooms");
 
         dispatch({
           type: USER_SIGNED_IN,
           payload: user
-        })
+        });
       })
-      .catch((error) => {
-        dispatch({ type: APP_DONE_LOADING })
+      .catch(error => {
+        dispatch({ type: APP_DONE_LOADING });
         dispatch({
           type: LOAD_ERROR,
           payload: error.message
-        })
-      })
-  }
-}
+        });
+      });
+  };
+};

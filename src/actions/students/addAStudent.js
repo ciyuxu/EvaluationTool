@@ -1,42 +1,44 @@
-import API from '../../api'
+import API from "../../api";
 import {
   APP_LOADING,
   APP_DONE_LOADING,
   LOAD_ERROR,
   LOAD_SUCCESS
-} from '../loading'
+} from "../loading";
 
-export const STUDENT_CREATED = 'STUDENT_CREATED'
+export const STUDENT_CREATED = "STUDENT_CREATED";
 
-const api = new API()
+const api = new API();
 
-export default (newstudent) => {
-  return (dispatch) => {
-    dispatch({ type: APP_LOADING })
+export default newstudent => {
+  return dispatch => {
+    dispatch({ type: APP_LOADING });
 
-    const backend = api.service('students')
+    const backend = api.service("students");
 
-    api.authenticate()
+    api
+      .authenticate()
       .then(() => {
-        backend.create(newstudent)
-          .then((result) => {
-            dispatch({ type: APP_DONE_LOADING })
-            dispatch({ type: LOAD_SUCCESS })
+        backend
+          .create(newstudent)
+          .then(result => {
+            dispatch({ type: APP_DONE_LOADING });
+            dispatch({ type: LOAD_SUCCESS });
           })
-          .catch((error) => {
-            dispatch({ type: APP_DONE_LOADING })
+          .catch(error => {
+            dispatch({ type: APP_DONE_LOADING });
             dispatch({
               type: LOAD_ERROR,
               payload: error.message
-            })
-          })
+            });
+          });
       })
-      .catch((error) => {
-        dispatch({ type: APP_DONE_LOADING })
+      .catch(error => {
+        dispatch({ type: APP_DONE_LOADING });
         dispatch({
           type: LOAD_ERROR,
           payload: error.message
-        })
-      })
-  }
-}
+        });
+      });
+  };
+};

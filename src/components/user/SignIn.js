@@ -1,54 +1,46 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { replace, push } from 'react-router-redux'
-import Paper from 'material-ui/Paper'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
-import signIn from '../../actions/user/sign-in'
-
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { replace, push } from "react-router-redux";
+import Paper from "material-ui/Paper";
+import TextField from "material-ui/TextField";
+import RaisedButton from "material-ui/RaisedButton";
+import FlatButton from "material-ui/FlatButton";
+import signIn from "../../actions/user/sign-in";
 
 const dialogStyle = {
-  width: '400px',
-  margin: '50px auto',
-  padding: '2rem',
-}
+  width: "400px",
+  margin: "50px auto",
+  padding: "2rem"
+};
 
 const buttonStyle = {
-  float: 'right',
-  marginLeft: '2rem',
-}
+  float: "right",
+  marginLeft: "2rem"
+};
 
 export class SignIn extends PureComponent {
-  static propTypes = {
-    push: PropTypes.func.isRequired,
-    signIn: PropTypes.func.isRequired,
-    signedIn: PropTypes.bool,
-  }
-
   componentWillMount() {
-    const { replace, signedIn } = this.props
-    if (signedIn) replace('/')
+    const { replace, signedIn } = this.props;
+    if (signedIn) replace("/");
   }
 
   submitForm(event) {
-    event.preventDefault()
+    event.preventDefault();
     const user = {
       email: this.refs.email.getValue(),
-      password: this.refs.password.getValue(),
-    }
-    this.props.signIn(user)
+      password: this.refs.password.getValue()
+    };
+    this.props.signIn(user);
   }
 
   signUp() {
-    this.props.push('/sign-up')
+    this.props.push("/sign-up");
   }
 
   render() {
     return (
-      <Paper style={ dialogStyle }>
-
+      <Paper style={dialogStyle}>
         <h1>"Sign in"</h1>
 
         <form onSubmit={this.submitForm.bind(this)}>
@@ -56,24 +48,28 @@ export class SignIn extends PureComponent {
             <TextField ref="email" type="email" hintText="Email address" />
           </div>
           <div className="input">
-            <TextField ref="password" type="password" hintText="Password"  />
+            <TextField ref="password" type="password" hintText="Password" />
           </div>
         </form>
-        <FlatButton
-          onClick={ this.signUp.bind(this) }
-          label="Sign up" />
+        <FlatButton onClick={this.signUp.bind(this)} label="Sign up" />
         <RaisedButton
-          style={ buttonStyle }
-          onClick={ this.submitForm.bind(this) }
+          style={buttonStyle}
+          onClick={this.submitForm.bind(this)}
           label="Sign in"
-          primary={true} />
+          primary={true}
+        />
       </Paper>
-    )
+    );
   }
 }
+SignIn.propTypes = {
+  push: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
+  signedIn: PropTypes.bool
+};
 
 const mapStateToProps = ({ currentUser }) => ({
-  signedIn: !!currentUser && !!currentUser._id,
-})
+  signedIn: !!currentUser && !!currentUser._id
+});
 
-export default connect(mapStateToProps, { signIn, replace, push })(SignIn)
+export default connect(mapStateToProps, { signIn, replace, push })(SignIn);

@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import muiTheme from './styles/theme'
-import Navbar from './components/ui/Navbar'
-import Routes from './routes'
-import './App.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import muiTheme from "./styles/theme";
+import Navbar from "./components/ui/Navbar";
+import Routes from "./routes";
+import "./App.css";
 // import SignIn from './components/SignIn';
 
 class App extends Component {
-  static childContextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  }
-
   getChildContext() {
-    return { muiTheme }
+    return { muiTheme };
   }
 
   render() {
@@ -27,5 +23,7 @@ class App extends Component {
     );
   }
 }
+
+App.childContextTypes = { muiTheme: PropTypes.object.isRequired };
 
 export default App;

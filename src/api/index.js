@@ -1,4 +1,4 @@
-import client from './client'
+import client from "./client";
 
 // API Client
 // -----------------------------------------------------------------------------
@@ -25,34 +25,35 @@ import client from './client'
 //
 class API {
   constructor() {
-    this.app = client
+    this.app = client;
   }
 
   service(serviceName) {
-    return this.app.service(serviceName)
+    return this.app.service(serviceName);
   }
 
   authenticate() {
-    return this.app.authenticate()
+    return this.app.authenticate();
   }
 
   signIn({ email, password }) {
-    return this.app.authenticate({
-      strategy: 'local',
-      email,
-      password
-    })
-    .then((response) => {
-      return this.app.passport.verifyJWT(response.accessToken);
-    })
-    .then((payload) => {
-      return this.app.service('users').get(payload.userId);
-    })
+    return this.app
+      .authenticate({
+        strategy: "local",
+        email,
+        password
+      })
+      .then(response => {
+        return this.app.passport.verifyJWT(response.accessToken);
+      })
+      .then(payload => {
+        return this.app.service("users").get(payload.userId);
+      });
   }
 
   signOut() {
-    return this.app.logout()
+    return this.app.logout();
   }
 }
 
-export default API
+export default API;

@@ -1,23 +1,23 @@
-import API from '../../api'
-import signIn from './sign-in'
+import API from "../../api";
+import signIn from "./sign-in";
 
-export const USER_SIGNED_UP = 'USER_SIGNED_UP'
+export const USER_SIGNED_UP = "USER_SIGNED_UP";
 
-const api = new API()
+const api = new API();
 
-export default (user) => {
-  return (dispatch) => {
+export default user => {
+  return dispatch => {
+    const backend = api.service("users");
 
-    const backend = api.service('users')
-
-    backend.create(user)
-      .then((result) => {
-        dispatch(signIn(user))
+    backend
+      .create(user)
+      .then(result => {
+        dispatch(signIn(user));
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch({
           payload: error.message
-        })
-      })
-  }
-}
+        });
+      });
+  };
+};

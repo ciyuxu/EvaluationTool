@@ -1,50 +1,52 @@
 // src/actions/games/get.js
 
-import API from '../../api'
+import API from "../../api";
 import {
   APP_LOADING,
   APP_DONE_LOADING,
   LOAD_ERROR,
   LOAD_SUCCESS
-} from '../loading'
+} from "../loading";
 
-export const GET_STUDENT = 'GET_STUDENT'
+export const GET_STUDENT = "GET_STUDENT";
 
-const api = new API()
+const api = new API();
 
-export default (studentId) => {
-  return (dispatch) => {
-    dispatch({ type: APP_LOADING })
+export default studentId => {
+  return dispatch => {
+    dispatch({ type: APP_LOADING });
 
-    const backend = api.service('students')
+    const backend = api.service("students");
 
-    api.authenticate()
+    api
+      .authenticate()
       .then(() => {
-        backend.get(studentId)
-          .then((result) => {
-            console.log(result)
-            dispatch({ type: APP_DONE_LOADING })
-            dispatch({ type: LOAD_SUCCESS })
+        backend
+          .get(studentId)
+          .then(result => {
+            console.log(result);
+            dispatch({ type: APP_DONE_LOADING });
+            dispatch({ type: LOAD_SUCCESS });
 
             dispatch({
               type: GET_STUDENT,
               payload: result
-            })
+            });
           })
-          .catch((error) => {
-            dispatch({ type: APP_DONE_LOADING })
+          .catch(error => {
+            dispatch({ type: APP_DONE_LOADING });
             dispatch({
               type: LOAD_ERROR,
               payload: error.message
-            })
-          })
+            });
+          });
       })
-      .catch((error) => {
-        dispatch({ type: APP_DONE_LOADING })
+      .catch(error => {
+        dispatch({ type: APP_DONE_LOADING });
         dispatch({
           type: LOAD_ERROR,
           payload: error.message
-        })
-      })
-  }
-}
+        });
+      });
+  };
+};

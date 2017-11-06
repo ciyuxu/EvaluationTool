@@ -66,7 +66,7 @@ class ClassroomEditor extends PureComponent {
   render(){
     if (!this.props.signedIn) return null
     return (
-      <div className="CreateClassroomButton">
+      <div className="CreateClassroom">
         <TextField
           type="text"
           ref="batchNr"

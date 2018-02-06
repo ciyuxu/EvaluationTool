@@ -1,8 +1,18 @@
+#Evaluation Tool
+
 ##Running Locally
+
+Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
+
+```bash
 git clone https://github.com/ciyuxu/EvaluationTool
 cd EvaluationTool
 npm install
 npm start
+```
+
+The API/Backend for this project can be found here: [evaluation-tool-api](https://github.com/ciyuxu/evaluation-tool-api)
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

@@ -6,7 +6,7 @@ import RaisedButton from "material-ui/RaisedButton";
 
 class LuckyButton extends PureComponent {
   luckStudent() {
-    const { _id, students } = this.props.currentClassroom;
+    const { _id, students } = this.props.currentClassroom.students;
     this.props.pickStudent(_id, students);
   }
 
@@ -15,7 +15,7 @@ class LuckyButton extends PureComponent {
       <RaisedButton
         label="LuckyButton"
         primary={true}
-        onClick={this.props.onChange}
+        onClick={this.luckStudent.bind(this)}
       />
     );
   }
